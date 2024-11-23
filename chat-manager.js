@@ -1,5 +1,6 @@
 let msgCD = false;
 let llmProccessing = false;
+let firstMessage = true;
 
 function resizeTextarea(elem) {
     if (!elem.style.height) return elem.style.height = "1.2em";
@@ -59,6 +60,10 @@ async function sendMessage(identifier, content) {
     let messageClass;
     if (identifier == "user") {
         messageClass = "user-message";
+        if (firstMessage){
+            chatWindow.innerHTML = `<div id="first-message" class="${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
+            return firstMessage = false;
+        };
         chatWindow.innerHTML = `<div class="${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
     } else if (identifier == "assistantProcessing") {
         messageClass = "assistant-message";

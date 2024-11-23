@@ -88,7 +88,7 @@ textarea{
 }
 
 #chat-box-window{
-    height: 89.75vh;
+    height: 87.5vh;
     overflow: hidden;
     overflow-y: scroll;
     display: flex;
@@ -96,12 +96,12 @@ textarea{
 }
 
 #first-message{
-    margin-top: 5em;
+    margin-top: 25vh;
 }
 
 .user-message{
     align-self: flex-end;
-    margin-bottom: 2.5em;
+    margin-bottom: 5vh;
     margin-right: 25px;
     color: #404040;
     font-family: Arial, Helvetica, sans-serif;
@@ -116,7 +116,7 @@ textarea{
 
 .assistant-message{
     align-self: flex-start;
-    margin-bottom: 5em;
+    margin-bottom: 5vh;
     margin-left: 25px;
     color: #404040;
     font-family: Arial, Helvetica, sans-serif;

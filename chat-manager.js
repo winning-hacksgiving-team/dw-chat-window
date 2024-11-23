@@ -89,17 +89,20 @@ async function sendMessage(identifier, content) {
 };
 
 async function generateText(prompt) {
-    const response = await fetch('/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ prompt })
+    llmProccessing = true;
+    sendMessage("assistantProcessing")
+    const response = await fetch('https://pika-engaging-preferably.ngrok-free.app/processprompt', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt })
     });
-  
     const data = await response.json();
-    console.log(data.text);   
-    sendMessage("assistant", data.text);
+    const output = data.text.choices[0].message.content
+    sendMessage("assistant", output);
+    msgCD = false;
+    llmProccessing = false;
 };
 
 function processPrompt(){
@@ -107,8 +110,8 @@ function processPrompt(){
     if(!textArea.value || msgCD) return;
     msgCD = true;
     sendMessage("user", textArea.value);
-    //generateText(textArea.value);
-    testResponse(textArea.value)
+    generateText(textArea.value);
+    // testResponse(textArea.value)
     textArea.value = null;
     resizeTextarea(textArea);
 };

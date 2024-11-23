@@ -2,7 +2,6 @@ function resizeTextarea(elem) {
     if (!elem.style.height) return elem.style.height = "1.2em";
     const textbox = document.getElementById("user-text-box")
     const chatWindow = document.getElementById("chat-box-window")
-    console.log(chatWindow.style.height)
     if (!chatWindow.style.height) return chatWindow.style.height = "89.75vh";
     if (elem.clientHeight < elem.scrollHeight) {
         if (textbox.style.flexDirection == "column") {

@@ -11,8 +11,8 @@
 <body onresize="resizeTextarea(document.getElementById('user-text-input'))">
     <div id="chat-header">
         <span id="back-button">
-            <button class="back-btn">
-            </button>
+            <a class="back-btn" href="https://discovery.org">
+            </a>
         </span>
         <span id="download-button">
             <button class="download-btn">
@@ -24,37 +24,17 @@
         </span>
     </div>
     <div id="chat-box-window">
-        <div class="assistant-message">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis mauris nibh, ac pharetra urna ultricies sit amet. Cras bibendum pretium tellus. Nulla enim purus, fermentum eget orci vitae, pretium aliquet metus. Curabitur sagittis purus nisi, et ultrices tellus eleifend quis.
-            </p>
-        </div>
-        <div class="user-message">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis mauris nibh, ac pharetra urna ultricies sit amet. Cras bibendum pretium tellus. Nulla enim purus, fermentum eget orci vitae, pretium aliquet metus. Curabitur sagittis purus nisi, et ultrices tellus eleifend quis. Pellentesque nisi eros, ornare nec mattis nec, elementum ac odio. Donec at bibendum tellus, eget mattis justo. Donec id varius felis. Pellentesque sit amet egestas nunc. Vivamus a urna consequat, volutpat lectus ac, tincidunt dui. Duis sed urna luctus, imperdiet mauris sit amet, volutpat turpis. Nullam auctor mi eget turpis vestibulum, nec ultrices augue sodales. Vivamus at lobortis orci. Phasellus vel augue id elit maximus bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            </p>
-        </div>
-        <div class="assistant-message">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis mauris nibh, ac pharetra urna ultricies sit amet. Cras bibendum pretium tellus. Nulla enim purus, fermentum eget orci vitae, pretium aliquet metus. Curabitur sagittis purus nisi, et ultrices tellus eleifend quis. Pellentesque nisi eros, ornare nec mattis nec, elementum ac odio. Donec at bibendum tellus, eget mattis justo. Donec id varius felis. Pellentesque sit amet egestas nunc. Vivamus a urna consequat, volutpat lectus ac, tincidunt dui. Duis sed urna luctus, imperdiet mauris sit amet, volutpat turpis. Nullam auctor mi eget turpis vestibulum, nec ultrices augue sodales. Vivamus at lobortis orci. Phasellus vel augue id elit maximus bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            </p>
-        </div>
-        <div id="first-message" class="user-message">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis mauris nibh, ac pharetra urna ultricies sit amet. Cras bibendum pretium tellus. Nulla enim purus, fermentum eget orci vitae, pretium aliquet metus. Curabitur sagittis purus nisi, et ultrices tellus eleifend quis. Pellentesque nisi eros, ornare nec mattis nec, elementum ac odio. Donec at bibendum tellus, eget mattis justo. Donec id varius felis. Pellentesque sit amet egestas nunc. Vivamus a urna consequat, volutpat lectus ac, tincidunt dui. Duis sed urna luctus, imperdiet mauris sit amet, volutpat turpis. Nullam auctor mi eget turpis vestibulum, nec ultrices augue sodales. Vivamus at lobortis orci. Phasellus vel augue id elit maximus bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            </p>
-        </div>
     </div>
     <div id="user-text-box">
         <div id="user-text-area">
-            <textarea id="user-text-input" oninput="resizeTextarea(this)" placeholder="Send a message"></textarea>
+            <textarea id="user-text-input" oninput="resizeTextarea(this)" onkeypress="textareaKeyPressed(event)" placeholder="Send a message"></textarea>
         </div>
         <div id="prompt-suggestions">
             
         </div>
         <div id="text-box-controls">
-            <div id="send-prompt-button" class="control-buttons">
-                <button class="send-pmpt">
+            <div id="send-prompt-button" class="control-buttons" onclick="processPrompt()">
+                <button id="send-btn" class="send-pmpt">
                 </button>
             </div>
             <div id="voice-dictation" class="control-buttons">

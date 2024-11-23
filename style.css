@@ -96,12 +96,12 @@ textarea{
 }
 
 #first-message{
-    margin-top: 10%;
+    margin-top: 5em;
 }
 
 .user-message{
     align-self: flex-end;
-    margin-bottom: 5%;
+    margin-bottom: 2.5em;
     margin-right: 25px;
     color: #404040;
     font-family: Arial, Helvetica, sans-serif;
@@ -116,7 +116,7 @@ textarea{
 
 .assistant-message{
     align-self: flex-start;
-    margin-bottom: 5%;
+    margin-bottom: 5em;
     margin-left: 25px;
     color: #404040;
     font-family: Arial, Helvetica, sans-serif;

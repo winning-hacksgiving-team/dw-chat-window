@@ -20,27 +20,27 @@ button{
 }
 
 .back-btn::before{
-    content:url(./assets/back-button.webp);
+    content:url(https://chat.teowei.lol/assets/back-button.webp);
 }
 
 .download-btn::before{
-    content:url(./assets/download-transcript.webp);
+    content:url(https://chat.teowei.lol/assets/download-transcript.webp);
 }
 
 .report-btn::before{
-    content:url(./assets/chat-report.webp);
+    content:url(https://chat.teowei.lol/assets/chat-report.webp);
 }
 
 .controls-expd::before{
-    content:url(./assets/control-menu.webp);
+    content:url(https://chat.teowei.lol/assets/control-menu.webp);
 }
 
 .voice-dctn::before{
-    content:url(./assets/voice-dictation.webp);
+    content:url(https://chat.teowei.lol/assets/voice-dictation.webp);
 }
 
 .send-pmpt::before{
-    content:url(./assets/send-message.webp);
+    content:url(https://chat.teowei.lol/assets/send-message.webp);
 }
 
 #user-text-box{

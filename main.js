@@ -61,17 +61,26 @@ function resizeTextarea(elem) {
 async function sendMessage(identifier, content) {
     const chatWindow = document.getElementById("chat-box-window");
     let messageClass;
+    const lastMessages = document.getElementsByClassName("last-message");
+    if (lastMessages[1]) {
+        lastMessages[1].classList.add("normal-message");
+        lastMessages[1].classList.remove("last-message");
+    };
     if (identifier == "user") {
         messageClass = "user-message";
         if (firstMessage){
-            chatWindow.innerHTML = `<div id="first-message" class="${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
+            chatWindow.innerHTML = `<div id="first-message" class="last-message ${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
             return firstMessage = false;
         };
-        chatWindow.innerHTML = `<div class="${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
+        chatWindow.innerHTML = `<div class="last-message ${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
     } else if (identifier == "assistantProcessing") {
         messageClass = "assistant-message";
-        chatWindow.innerHTML = `<div id="assistant-processing" class="${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
+        chatWindow.innerHTML = `<div id="assistant-processing" class="last-message ${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
         const messageBox = document.getElementById("assistant-processing");
+        if (lastMessages[1]) {
+            lastMessages[1].classList.add("normal-message");
+            lastMessages[1].classList.remove("last-message");
+        };
         while (llmProccessing) {
             await new Promise(resolve => setTimeout(resolve, 500));
             if (!llmProccessing) return;
@@ -86,7 +95,7 @@ async function sendMessage(identifier, content) {
     } else if (identifier == "assistant") {
         messageClass = "assistant-message";
         if (!document.getElementById("assistant-processing")) {
-            chatWindow.innerHTML = `<div id="assistant-processing" class="${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
+            chatWindow.innerHTML = `<div id="assistant-processing" class="last-message ${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
         };
         const messageBox = document.getElementById("assistant-processing");
         messageBox.innerHTML = `<p>\n${content}\n</p>`;

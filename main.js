@@ -204,6 +204,7 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 const voiceButton = document.querySelector("#voice-btn");
 
 const recognition = new SpeechRecognition();
+recognition.continuous = true;
 
 voiceButton.addEventListener("click", voiceBtnClick);
 function voiceBtnClick() {

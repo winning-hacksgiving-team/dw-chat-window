@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <script>
         const preKeyData = "https://chat.gioinfocus.com?qr_data="
@@ -78,7 +78,7 @@
                 </button>
             </div>
             <div id="voice-dictation" class="control-buttons">
-                <button class="voice-dctn">
+                <button id="voice-btn" class="voice-dctn">
                 </button>
             </div>
             <div id="qr-expander" class="control-buttons" onclick="openQRReader()">

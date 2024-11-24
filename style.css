@@ -54,6 +54,10 @@ button{
     content:url(https://chat.teowei.lol/assets/voice-dictation.webp);
 }
 
+.voice-on::before{
+    content:url(./assets/voice-on.webp);
+}
+
 .send-pmpt::before{
     content:url(https://chat.teowei.lol/assets/send-message.webp);
 }

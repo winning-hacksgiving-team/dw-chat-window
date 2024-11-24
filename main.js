@@ -161,4 +161,42 @@ function textareaKeyPressed(e) {
     };
 };
 
+///// Voice Dictation \\\\\
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const voiceButton = document.querySelector("#voice-btn");
+
+const recognition = new SpeechRecognition();
+
+voiceButton.addEventListener("click", voiceBtnClick);
+function voiceBtnClick() {
+    if(voiceButton.classList.contains("voice-dctn")) {
+        recognition.start();
+    } else {
+        recognition.stop();
+    };
+};
+recognition.addEventListener("start", startSpeechRecognition);
+function startSpeechRecognition() {
+    voiceButton.classList.add('voice-on');
+    voiceButton.classList.remove('voice-dctn');
+    console.log("Voice dictation started!");
+};
+
+recognition.addEventListener("end", endSpeechRecognition);
+function endSpeechRecognition() {
+    voiceButton.classList.add('voice-dctn');
+    voiceButton.classList.remove('voice-on');
+    console.log("Voice dictation ended!");
+};
+
+recognition.addEventListener("result", resultOfSpeechRecognition);
+function resultOfSpeechRecognition(event) {
+    console.log(event);
+    const userTextarea = document.getElementById("user-text-input");
+    const transcript = event.results[0][0].transcript;
+    console.log(transcript);
+    userTextarea.value = transcript;
+}
+
 //Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis mauris nibh, ac pharetra urna ultricies sit amet. Cras bibendum pretium tellus. Nulla enim purus, fermentum eget orci vitae, pretium aliquet metus. Curabitur sagittis purus nisi, et ultrices tellus eleifend quis. Pellentesque nisi eros, ornare nec mattis nec, elementum ac odio. Donec at bibendum tellus, eget mattis justo. Donec id varius felis. Pellentesque sit amet egestas nunc. Vivamus a urna consequat, volutpat lectus ac, tincidunt dui. Duis sed urna luctus, imperdiet mauris sit amet, volutpat turpis. Nullam auctor mi eget turpis vestibulum, nec ultrices augue sodales. Vivamus at lobortis orci. Phasellus vel augue id elit maximus bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus.

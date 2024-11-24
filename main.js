@@ -68,11 +68,12 @@ async function sendMessage(identifier, content) {
     };
     if (identifier == "user") {
         messageClass = "user-message";
+        let richMessage = content.replace(/(?:\r\n|\r|\n)/g,"<br>");
         if (firstMessage){
-            chatWindow.innerHTML = `<div id="first-message" class="last-message ${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
+            chatWindow.innerHTML = `<div id="first-message" class="last-message ${messageClass}">\n<p>\n${richMessage}\n</p>\n</div>\n${chatWindow.innerHTML}`;
             return firstMessage = false;
         };
-        chatWindow.innerHTML = `<div class="last-message ${messageClass}">\n<p>\n${content}\n</p>\n</div>\n${chatWindow.innerHTML}`;
+        chatWindow.innerHTML = `<div class="last-message ${messageClass}">\n<p>\n${richMessage}\n</p>\n</div>\n${chatWindow.innerHTML}`;
     } else if (identifier == "assistantProcessing") {
         messageClass = "assistant-message";
         chatWindow.innerHTML = `<div id="assistant-processing" class="last-message ${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
@@ -97,8 +98,9 @@ async function sendMessage(identifier, content) {
         if (!document.getElementById("assistant-processing")) {
             chatWindow.innerHTML = `<div id="assistant-processing" class="last-message ${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
         };
+        let richMessage = content.replace(/(?:\r\n|\r|\n)/g,"<br>");
         const messageBox = document.getElementById("assistant-processing");
-        messageBox.innerHTML = `<p>\n${content}\n</p>`;
+        messageBox.innerHTML = `<p>\n${richMessage}\n</p>`;
         messageBox.removeAttribute('id');
         if (firstMessage){
             messageBox.id = "first-message"
@@ -151,7 +153,7 @@ async function testResponse(prompt) {
 };
 
 function textareaKeyPressed(e) {
-    if (e.shiftKey || msgCD) return;
+    if (e.shiftKey) return;
     if (e.keyCode === 13) {
         e.preventDefault();
         document.getElementById("send-btn").click();

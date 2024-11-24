@@ -34,8 +34,16 @@ button{
     z-index: 1;
 }
 
-.back-btn::before{
+/* .back-btn::before{
     content:url(https://chat.teowei.lol/assets/discoveryworld.png);
+} */
+
+.back-btn{
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-radius: 10px;
+    width: 20%;
+    height: auto;
 }
 
 .controls-expd::before{
@@ -119,10 +127,10 @@ textarea{
 
 .user-message{
     align-self: flex-end;
-    margin-right: 25px;
+    width: 62.5%;
     color: #404040;
     font-family: Arial, Helvetica, sans-serif;
-    width: 62.5%;
+    margin-right: 25px;
     font-size: 125%;
     background-color: #eeeeee;
     border-radius: 25px;
@@ -133,10 +141,10 @@ textarea{
 
 .assistant-message{
     align-self: flex-start;
-    margin-left: 25px;
+    width: 62.5%;
     color: #404040;
     font-family: Arial, Helvetica, sans-serif;
-    width: 62.5%;
+    margin-left: 25px;
     font-size: 125%;
     background-color: #eeeeee;
     border-radius: 25px;

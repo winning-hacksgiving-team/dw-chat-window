@@ -35,15 +35,7 @@ button{
 }
 
 .back-btn::before{
-    content:url(https://chat.teowei.lol/assets/back-button.webp);
-}
-
-.download-btn::before{
-    content:url(https://chat.teowei.lol/assets/download-transcript.webp);
-}
-
-.report-btn::before{
-    content:url(https://chat.teowei.lol/assets/chat-report.webp);
+    content:url(https://chat.teowei.lol/assets/discoveryworld.png);
 }
 
 .controls-expd::before{

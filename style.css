@@ -1,5 +1,9 @@
+body{
+    background-color: #c3e3f3;
+}
+
 #reader{
-    background-color: #FFFFFF;
+    background-color: #c3e3f3;
     position: fixed;
     top: 25%;
     left: 25%;
@@ -57,7 +61,7 @@ button{
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, 0%);
-    background-color: #dcdcdc;
+    background-color: #FFFFFF;
     border-radius: 25px;
     padding: 10px;
     position: fixed;

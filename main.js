@@ -1,3 +1,6 @@
+// import QrScanner from 'qr-scanner';
+
+///// Text Message \\\\\
 let msgCD = false;
 let llmProccessing = false;
 let firstMessage = true;
@@ -82,13 +85,21 @@ async function sendMessage(identifier, content) {
         };
     } else if (identifier == "assistant") {
         messageClass = "assistant-message";
+        if (!document.getElementById("assistant-processing")) {
+            chatWindow.innerHTML = `<div id="assistant-processing" class="${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
+        };
         const messageBox = document.getElementById("assistant-processing");
         messageBox.innerHTML = `<p>\n${content}\n</p>`;
         messageBox.removeAttribute('id');
+        if (firstMessage){
+            messageBox.id = "first-message"
+            return firstMessage = false;
+        };
     };
 };
 
 async function generateText(prompt) {
+    msgCD = true;
     llmProccessing = true;
     sendMessage("assistantProcessing")
     try {

@@ -1,3 +1,13 @@
+#reader{
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50vw;
+    height: 50vh;
+    z-index: -1;
+}
+
 button{
     background-color: transparent;
     background-repeat: no-repeat;
@@ -8,7 +18,7 @@ button{
 }
 
 #chat-header{
-    position:fixed;
+    position:absolute;
     font-size: 500%;
     width: 100%;
     top: none;
@@ -88,6 +98,8 @@ textarea{
 }
 
 #chat-box-window{
+    position: absolute;
+    top: none;
     height: 87.5vh;
     overflow: hidden;
     overflow-y: scroll;

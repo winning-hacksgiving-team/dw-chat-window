@@ -24,7 +24,7 @@
             };
             function onScanSuccess(decodedText, decodedResult) {
                 if (decodedText.substr(preKeyData.length,KEY.length) == KEY) {
-                    generateText(decodedText.substr(preKeyData.length+KEY.length));
+                    generateText(decodedText.substr(preKeyData.length+KEY.length), true);
                 } else {
                     sendMessage("assistant","[Invalid QR-Code]");
                 };

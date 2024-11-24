@@ -58,6 +58,16 @@ function resizeTextarea(elem) {
     };
 };
 
+function appendHistory(identifier,content) {
+    let chatHistory = sessionStorage.getItem("chatHistoryAssistant");
+    let chatParsed = JSON.parse(chatHistory);
+    chatParsed[chatParsed.length] = {
+        "role": identifier,
+        "content": content
+    };
+    sessionStorage.setItem("chatHistoryAssistant", JSON.stringify(chatParsed));
+};
+
 async function sendMessage(identifier, content) {
     const chatWindow = document.getElementById("chat-box-window");
     let messageClass;
@@ -71,9 +81,16 @@ async function sendMessage(identifier, content) {
         let richMessage = content.replace(/(?:\r\n|\r|\n)/g,"<br>");
         if (firstMessage){
             chatWindow.innerHTML = `<div id="first-message" class="last-message ${messageClass}">\n<p>\n${richMessage}\n</p>\n</div>\n${chatWindow.innerHTML}`;
+            sessionStorage.setItem("chatHistoryAssistant", JSON.stringify([
+                {
+                    "role": "user",
+                    "content": content
+                }
+            ]));
             return firstMessage = false;
         };
         chatWindow.innerHTML = `<div class="last-message ${messageClass}">\n<p>\n${richMessage}\n</p>\n</div>\n${chatWindow.innerHTML}`;
+        appendHistory("user", content);
     } else if (identifier == "assistantProcessing") {
         messageClass = "assistant-message";
         chatWindow.innerHTML = `<div id="assistant-processing" class="last-message ${messageClass}">\n<p>\n\n</p>\n</div>\n${chatWindow.innerHTML}`;
@@ -104,24 +121,44 @@ async function sendMessage(identifier, content) {
         messageBox.removeAttribute('id');
         if (firstMessage){
             messageBox.id = "first-message"
+            sessionStorage.setItem("chatHistoryAssistant", JSON.stringify([
+                {
+                    "role": "assistant",
+                    "content": content
+                }
+            ]));
             return firstMessage = false;
         };
+        appendHistory("assistant", content);
     };
 };
 
-async function generateText(prompt) {
+async function generateText(prompt, isQR) {
     if (msgCD) {
         return;
     }  else msgCD = true;
     llmProccessing = true;
     sendMessage("assistantProcessing")
+    if (isQR) {
+        let chatHistory = sessionStorage.getItem("chatHistoryAssistant");
+        let historyLength;
+        try { historyLength = chatParsed.length; } catch(err) { historyLength=0; };
+        let chatParsed = JSON.parse(chatHistory);
+        chatParsed[chatParsed.length] = {
+            "role": "user",
+            "content": prompt
+        };
+        sessionStorage.setItem("chatHistoryAssistant", JSON.stringify(chatParsed));
+    };
     try {
-        const response = await fetch('https://terrier-polished-partly.ngrok-free.app/processprompt', {
+        let promptMessage = sessionStorage.getItem("chatHistoryAssistant");
+        console.log(promptMessage);
+        const response = await fetch('https://pika-engaging-preferably.ngrok-free.app/processprompt', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ prompt })
+            body: promptMessage
         });
         const data = await response.json();
         const output = data.text;

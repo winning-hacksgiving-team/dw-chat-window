@@ -110,7 +110,9 @@ async function sendMessage(identifier, content) {
 };
 
 async function generateText(prompt) {
-    msgCD = true;
+    if (msgCD) {
+        return;
+    }  else msgCD = true;
     llmProccessing = true;
     sendMessage("assistantProcessing")
     try {
@@ -134,7 +136,6 @@ async function generateText(prompt) {
 function processPrompt(){
     const textArea = document.getElementById("user-text-input");
     if(!textArea.value || msgCD) return;
-    msgCD = true;
     sendMessage("user", textArea.value);
     generateText(textArea.value);
     // testResponse(textArea.value)

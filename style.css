@@ -46,8 +46,8 @@ button{
     height: auto;
 }
 
-.controls-expd::before{
-    content:url(https://chat.teowei.lol/assets/control-menu.webp);
+.qr-expd::before{
+    content:url(https://chat.teowei.lol/assets/qr-reader.webp);
 }
 
 .voice-dctn::before{

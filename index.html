@@ -8,12 +8,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <script>
         const KEY = "VERY_PROFESSIONAL_KEY-"
+        let QROPEN;
         async function openQRReader(){
             const readerDiv = document.getElementById("reader");
             var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
                 fps: 30,
                 formatsToSupport: ["QR_CODE"]
             });
+            if (QROPEN){
+                html5QrcodeScanner.clear();
+                readerDiv.remove();
+                document.getElementById("body").innerHTML = "<div id=reader></div>"+ document.getElementById("body").innerHTML;
+                return QROPEN = false;
+            };
             function onScanSuccess(decodedText, decodedResult) {
                 if (decodedText.substr(0,KEY.length) == KEY) {
                     generateText(decodedText.substr(KEY.length));
@@ -24,7 +31,7 @@
                 readerDiv.remove();
                 document.getElementById("body").innerHTML = "<div id=reader></div>"+ document.getElementById("body").innerHTML;
             };
-
+            QROPEN = true;
             html5QrcodeScanner.render(onScanSuccess);
             readerDiv.style.zIndex = 98;
             readerDiv.firstElementChild.firstElementChild.remove();
@@ -62,8 +69,8 @@
                 <button class="voice-dctn">
                 </button>
             </div>
-            <div id="controls-expander" class="control-buttons" onclick="openQRReader()">
-                <button class="controls-expd">
+            <div id="qr-expander" class="control-buttons" onclick="openQRReader()">
+                <button class="qr-expd">
                 </button>
             </div>
         </div>

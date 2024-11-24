@@ -22,7 +22,7 @@ button{
 }
 
 #chat-header{
-    position:absolute;
+    position:fixed;
     font-size: 500%;
     width: 100%;
     top: none;
@@ -31,6 +31,7 @@ button{
     margin: none;
     display: flex;
     justify-content: space-between;
+    z-index: 1;
 }
 
 .back-btn::before{

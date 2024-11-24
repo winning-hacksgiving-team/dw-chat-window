@@ -114,7 +114,7 @@ async function generateText(prompt) {
     llmProccessing = true;
     sendMessage("assistantProcessing")
     try {
-        const response = await fetch('https://pika-engaging-preferably.ngrok-free.app/processprompt', {
+        const response = await fetch('https://terrier-polished-partly.ngrok-free.app/processprompt', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -122,7 +122,7 @@ async function generateText(prompt) {
             body: JSON.stringify({ prompt })
         });
         const data = await response.json();
-        const output = data.text.choices[0].message.content
+        const output = data.text;
         sendMessage("assistant", output);
     } catch(err) {
         sendMessage("assistant", "Error: Attempt to process prompt failed.");

@@ -7,6 +7,7 @@
     <script src="main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <script>
+        const KEY = "VERY_PROFESSIONAL_KEY-"
         async function openQRReader(){
             const readerDiv = document.getElementById("reader");
             var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
@@ -14,8 +15,8 @@
                 formatsToSupport: ["QR_CODE"]
             });
             function onScanSuccess(decodedText, decodedResult) {
-                if (decodedText.substr(0,10) == "epic gamer") {
-                    generateText(decodedText.substr(10));
+                if (decodedText.substr(0,KEY.length) == KEY) {
+                    generateText(decodedText.substr(KEY.length));
                 } else {
                     sendMessage("assistant","[Invalid QR-Code]");
                 };
@@ -38,7 +39,7 @@
     <div id="chat-header">
         <span id="back-button">
             <a href="https://discoveryworld.org">
-                <img  class="back-btn" src="https://chat.teowei.lol/assets/discoveryworld.png">
+                <img  class="back-btn"  src="https://chat.teowei.lol/assets/discoveryworld.png">
             </a>
         </span>
     </div>

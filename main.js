@@ -142,9 +142,9 @@ async function testResponse(prompt) {
 };
 
 function textareaKeyPressed(e) {
+    if (e.shiftKey || msgCD) return;
     if (e.keyCode === 13) {
         e.preventDefault();
-        if (e.shiftKey || msgCD) return;
         document.getElementById("send-btn").click();
     };
 };

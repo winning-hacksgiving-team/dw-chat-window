@@ -5,11 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <script>
+        async function openQRReader(){
+            const readerDiv = document.getElementById("reader");
+            var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+                fps: 30,
+                formatsToSupport: ["QR_CODE"]
+            });
+            function onScanSuccess(decodedText, decodedResult) {
+                if (decodedText.substr(0,10) == "epic gamer") {
+                    generateText(decodedText.substr(10));
+                } else {
+                    sendMessage("assistant","[Invalid QR-Code]");
+                };
+                html5QrcodeScanner.clear();
+                readerDiv.remove();
+                document.getElementById("body").innerHTML = "<div id=reader></div>"+ document.getElementById("body").innerHTML;
+            };
+
+            html5QrcodeScanner.render(onScanSuccess);
+            readerDiv.style.zIndex = 98;
+            readerDiv.firstElementChild.firstElementChild.remove();
+            readerDiv.firstElementChild.firstElementChild.remove();
+        };
+    </script>
     <title>Chat Window</title>
 </head>
 <body id="body" onresize="resizeTextarea(document.getElementById('user-text-input'))">
-    <div id="reader"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <div id="reader">
+    </div>
     <div id="chat-header">
         <span id="back-button">
             <a class="back-btn" href="https://discoveryworld.org">
@@ -26,27 +51,7 @@
             
         </div>
         <div id="text-box-controls">
-            <script>
-                async function openQRReader(){
-                    const readerDiv = document.getElementById("reader");
-                    var html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 });
 
-                    function onScanSuccess(decodedText, decodedResult) {
-                        if (decodedText.substr(0,10) == "epic gamer") {
-                            generateText(decodedText.substr(10));
-                        } else {
-                            sendMessage("assistant","[Invalid QR-Code]");
-                        };
-                        html5QrcodeScanner.clear();
-                        readerDiv.remove();
-                        document.getElementById("body").innerHTML = "<div id=reader></div>"+ document.getElementById("body").innerHTML
-                    };
-
-                    html5QrcodeScanner.render(onScanSuccess);
-                    readerDiv.style.zIndex = 98
-                };
-            </script>
             <div id="send-prompt-button" class="control-buttons" onclick="processPrompt()">
                 <button id="send-btn" class="send-pmpt">
                 </button>

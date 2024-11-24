@@ -7,6 +7,7 @@
     <script src="main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
     <script>
+        const preKeyData = "https://chat.gioinfocus.com?qr_data="
         const KEY = "VERY_PROFESSIONAL_KEY-"
         let QROPEN;
         async function openQRReader(){
@@ -22,8 +23,8 @@
                 return QROPEN = false;
             };
             function onScanSuccess(decodedText, decodedResult) {
-                if (decodedText.substr(0,KEY.length) == KEY) {
-                    generateText(decodedText.substr(KEY.length));
+                if (decodedText.substr(preKeyData.length,KEY.length) == KEY) {
+                    generateText(decodedText.substr(preKeyData.length+KEY.length));
                 } else {
                     sendMessage("assistant","[Invalid QR-Code]");
                 };
@@ -37,6 +38,17 @@
             readerDiv.firstElementChild.firstElementChild.remove();
             readerDiv.firstElementChild.firstElementChild.remove();
         };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const url = new URL(window.location.href);
+            const qrData = url.searchParams.get("qr_data");
+            if (!qrData) return;
+            if (qrData.substr(0,KEY.length) == KEY) {
+                generateText(qrData.substr(KEY.length));
+            } else {
+                sendMessage("assistant","[Invalid QR-Code]");
+            };
+        });
     </script>
     <title>Chat Window</title>
 </head>
